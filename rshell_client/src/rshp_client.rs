@@ -4,12 +4,12 @@ use crate::executor;
 use std::thread;
 use std::time::Duration;
 
-pub struct RshpClient<'a> {
+pub struct RshpClient {
     id: u32,
-    transporter: Transporter<'a>,
+    transporter: Transporter,
 }
 
-impl<'a> RshpClient<'a> {
+impl RshpClient {
     pub fn new(server: &str, port: u32) -> RshpClient {
         RshpClient {
             id: 0,

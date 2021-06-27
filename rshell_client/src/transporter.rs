@@ -6,20 +6,16 @@ use std::io::Read;
 
 const BUFSIZE: usize = 256;
 
-pub struct Transporter<'a> {
-    server: &'a str,
-    port: u32,
+pub struct Transporter {
     tcp_client: TcpStream
 }
 
-impl<'a> Transporter<'a> {
-    pub fn new(server: &'a str, port: u32) -> Transporter<'a> {
+impl<'a> Transporter {
+    pub fn new(server: &'a str, port: u32) -> Transporter {
         let client = TcpStream::connect(format!("{}:{}", server, port)).unwrap();
         client.set_read_timeout(Some(Duration::from_millis(150))).unwrap();
 
         Transporter {
-            server: server,
-            port: port,
             tcp_client: client,
         }
     }
